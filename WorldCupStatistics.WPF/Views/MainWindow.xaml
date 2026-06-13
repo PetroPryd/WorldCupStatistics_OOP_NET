@@ -1,0 +1,96 @@
+﻿<Window x:Class="WorldCupStatistics.WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:WorldCupStatistics.WPF.Localization"
+        xmlns:ctrl="clr-namespace:WorldCupStatistics.WPF.Controls"
+        Title="{Binding [AppTitle], Source={x:Static loc:Loc.Instance}}"
+        MinWidth="820" MinHeight="520" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,0"
+                       Text="{Binding [FavoriteTeamLabel], Source={x:Static loc:Loc.Instance}}"/>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}"
+                      DisplayMemberPath="DisplayName"/>
+
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="16,0,8,0"
+                       Text="{Binding [OpponentLabel], Source={x:Static loc:Loc.Instance}}"/>
+            <ComboBox Grid.Column="3" ItemsSource="{Binding Opponents}" SelectedItem="{Binding SelectedOpponent}"
+                      DisplayMemberPath="DisplayName"/>
+
+            <Button Grid.Column="4" Margin="16,0,0,0" Padding="12,4" Click="Settings_Click"
+                    Content="{Binding [SettingsButton], Source={x:Static loc:Loc.Instance}}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                <TextBlock VerticalAlignment="Center" Margin="0,0,8,0" FontSize="16"
+                           Text="{Binding [ResultLabel], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Text="{Binding ResultText}" FontSize="28" FontWeight="Bold"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="180"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Background="#1B5E20" CornerRadius="6" Margin="0,0,8,0">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" x:Name="LeftSubsTitle" Foreground="White"
+                                   FontWeight="Bold" Margin="8" TextWrapping="Wrap"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="LeftSubs" Margin="4"/>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Column="1" CornerRadius="6" ClipToBounds="True"
+                        MaxWidth="900" HorizontalAlignment="Stretch">
+                    <ctrl:PitchControl x:Name="Pitch"/>
+                </Border>
+
+                <Border Grid.Column="2" Background="#1B5E20" CornerRadius="6" Margin="8,0,0,0">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" x:Name="RightSubsTitle" Foreground="White"
+                                   FontWeight="Bold" Margin="8" TextWrapping="Wrap"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="RightSubs" Margin="4"/>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Border Grid.RowSpan="2" Background="#B0FFFFFF"
+                Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Margin="0,0,0,8" FontWeight="Bold"
+                           Text="{Binding [Loading], Source={x:Static loc:Loc.Instance}}"/>
+                <ProgressBar IsIndeterminate="True" Width="200" Height="18"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

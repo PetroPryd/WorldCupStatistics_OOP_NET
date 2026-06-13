@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WorldCupStatistics.DataLayer.Models
+{
+    public enum Gender { Men, Women }
+
+    public enum Position { Unknown, Goalie, Defender, Midfield, Forward }
+
+    public enum MatchEventType
+    {
+        Unknown, Goal, GoalPenalty, OwnGoal, YellowCard, RedCard, SubstitutionIn, SubstitutionOut
+    }
+
+    /// <summary>Converts the API's string values into our enums. Used by the mappers in Phase 4.</summary>
+    public static class EnumParsing
+    {
+        public static Position ToPosition(string? value) => value switch
+        {
+            "Goalie" => Position.Goalie,
+            "Defender" => Position.Defender,
+            "Midfield" => Position.Midfield,
+            "Forward" => Position.Forward,
+            _ => Position.Unknown
+        };
+
+        public static MatchEventType ToMatchEventType(string? value) => value switch
+        {
+            "goal" => MatchEventType.Goal,
+            "goal-penalty" => MatchEventType.GoalPenalty,
+            "goal-own" => MatchEventType.OwnGoal,
+            "own-goal" => MatchEventType.OwnGoal,
+            "yellow-card" => MatchEventType.YellowCard,
+            "red-card" => MatchEventType.RedCard,
+            "substitution-in" => MatchEventType.SubstitutionIn,
+            "substitution-out" => MatchEventType.SubstitutionOut,
+            _ => MatchEventType.Unknown
+        };
+
+        /// <summary>True for events that count toward a player's goal tally (own goals excluded).</summary>
+        public static bool IsGoal(this MatchEventType type)
+            => type is MatchEventType.Goal or MatchEventType.GoalPenalty;
+    }
+
+    public static class GenderExtensions
+    {
+        public static string ToSegment(this Gender gender) => gender == Gender.Women ? "women" : "men";
+    }
+}

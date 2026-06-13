@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="WorldCupStatistics.WPF.Controls.PitchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             SizeChanged="OnSizeChanged">
+    <Grid>
+        <Rectangle Fill="#2E7D32"/>
+        <Canvas x:Name="MarkingsCanvas"/>
+        <Canvas x:Name="PlayersCanvas"/>
+    </Grid>
+</UserControl>

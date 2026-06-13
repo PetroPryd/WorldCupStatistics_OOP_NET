@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>World Cup Statistics</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Settings</value></data>
+  <data name="GenderLabel" xml:space="preserve"><value>Championship:</value></data>
+  <data name="Men" xml:space="preserve"><value>Men</value></data>
+  <data name="Women" xml:space="preserve"><value>Women</value></data>
+  <data name="LanguageLabel" xml:space="preserve"><value>Language:</value></data>
+  <data name="English" xml:space="preserve"><value>English</value></data>
+  <data name="Croatian" xml:space="preserve"><value>Croatian</value></data>
+  <data name="Confirm" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="FavoriteTeamLabel" xml:space="preserve"><value>Favorite team:</value></data>
+  <data name="SettingsButton" xml:space="preserve"><value>Settings</value></data>
+  <data name="Loading" xml:space="preserve"><value>Loading...</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Error</value></data>
+  <data name="ConfirmExitTitle" xml:space="preserve"><value>Exit</value></data>
+  <data name="ConfirmExitMessage" xml:space="preserve"><value>Are you sure you want to exit?</value></data>
+  <data name="ConfirmSettingsMessage" xml:space="preserve"><value>Save these settings?</value></data>
+  <data name="Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+  <data name="FavoritePlayersTitle" xml:space="preserve"><value>Favorite players</value></data>
+  <data name="OtherPlayersTitle" xml:space="preserve"><value>Other players</value></data>
+  <data name="Captain" xml:space="preserve"><value>Captain</value></data>
+  <data name="MoveToFavorites" xml:space="preserve"><value>Move to favorites</value></data>
+  <data name="MoveToOthers" xml:space="preserve"><value>Move to others</value></data>
+  <data name="FavoritesLimitMessage" xml:space="preserve"><value>You can have at most 3 favorite players.</value></data>
+  <data name="RankingsButton" xml:space="preserve"><value>Rankings</value></data>
+  <data name="TabPlayersByGoals" xml:space="preserve"><value>Players by goals</value></data>
+  <data name="TabPlayersByYellow" xml:space="preserve"><value>Players by yellow cards</value></data>
+  <data name="TabMatchesByAttendance" xml:space="preserve"><value>Matches by attendance</value></data>
+  <data name="ColPicture" xml:space="preserve"><value>Picture</value></data>
+  <data name="ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="ColShirt" xml:space="preserve"><value>No.</value></data>
+  <data name="ColPosition" xml:space="preserve"><value>Position</value></data>
+  <data name="ColAppearances" xml:space="preserve"><value>Appearances</value></data>
+  <data name="ColGoals" xml:space="preserve"><value>Goals</value></data>
+  <data name="ColYellowCards" xml:space="preserve"><value>Yellow cards</value></data>
+  <data name="ColLocation" xml:space="preserve"><value>Location</value></data>
+  <data name="ColAttendance" xml:space="preserve"><value>Attendance</value></data>
+  <data name="ColHome" xml:space="preserve"><value>Home</value></data>
+  <data name="ColAway" xml:space="preserve"><value>Away</value></data>
+  <data name="ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="PrintButton" xml:space="preserve"><value>Print to PDF</value></data>
+</root>

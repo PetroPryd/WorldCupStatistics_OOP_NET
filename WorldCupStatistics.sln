@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCupStatistics.DataLayer", "WorldCupStatistics.DataLayer\WorldCupStatistics.DataLayer.csproj", "{6773B959-C2BF-4A6F-8A44-1484CB4FA61F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCupStatistics.WPF", "WorldCupStatistics.WPF\WorldCupStatistics.WPF.csproj", "{01C3A88B-9B32-4C9E-A1AF-A0494FA88E6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedAssets", "SharedAssets", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D2095AF9-04CF-4E5C-9590-73FDFDBEE4C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{9D797DC9-26DD-41CB-8A27-371F362A4B16}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\Petro Prydatkevych\Downloads\default-player.png = ..\..\..\Users\Petro Prydatkevych\Downloads\default-player.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "men", "men", "{0EFC22F9-E8DD-4C8E-B4D6-1B5472DADFD3}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\group_results.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\group_results.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\matches.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\matches.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\results.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\results.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\teams.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\men\teams.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "women", "women", "{52E4E22A-122B-410E-895C-92A58FD9E7CD}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\group_results.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\group_results.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\matches.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\matches.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\results.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\results.json
+		..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\teams.json = ..\..\..\Users\Petro Prydatkevych\Downloads\worldcup-sfg-io\worldcup.sfg.io\women\teams.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCupStatistics.WinForms", "WorldCupStatistics.WinForms\WorldCupStatistics.WinForms.csproj", "{F76D3C8E-24DE-4D0E-86B2-23FEE615C277}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6773B959-C2BF-4A6F-8A44-1484CB4FA61F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6773B959-C2BF-4A6F-8A44-1484CB4FA61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6773B959-C2BF-4A6F-8A44-1484CB4FA61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6773B959-C2BF-4A6F-8A44-1484CB4FA61F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C3A88B-9B32-4C9E-A1AF-A0494FA88E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C3A88B-9B32-4C9E-A1AF-A0494FA88E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C3A88B-9B32-4C9E-A1AF-A0494FA88E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C3A88B-9B32-4C9E-A1AF-A0494FA88E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F76D3C8E-24DE-4D0E-86B2-23FEE615C277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76D3C8E-24DE-4D0E-86B2-23FEE615C277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76D3C8E-24DE-4D0E-86B2-23FEE615C277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76D3C8E-24DE-4D0E-86B2-23FEE615C277}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2095AF9-04CF-4E5C-9590-73FDFDBEE4C9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9D797DC9-26DD-41CB-8A27-371F362A4B16} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0EFC22F9-E8DD-4C8E-B4D6-1B5472DADFD3} = {D2095AF9-04CF-4E5C-9590-73FDFDBEE4C9}
+		{52E4E22A-122B-410E-895C-92A58FD9E7CD} = {D2095AF9-04CF-4E5C-9590-73FDFDBEE4C9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91830791-B92C-42D5-BEC6-88DB2420C03C}
+	EndGlobalSection
+EndGlobal

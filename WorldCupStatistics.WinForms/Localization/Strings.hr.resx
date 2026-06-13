@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>Statistika Svjetskog prvenstva</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Postavke</value></data>
+  <data name="GenderLabel" xml:space="preserve"><value>Prvenstvo:</value></data>
+  <data name="Men" xml:space="preserve"><value>Muškarci</value></data>
+  <data name="Women" xml:space="preserve"><value>Žene</value></data>
+  <data name="LanguageLabel" xml:space="preserve"><value>Jezik:</value></data>
+  <data name="English" xml:space="preserve"><value>Engleski</value></data>
+  <data name="Croatian" xml:space="preserve"><value>Hrvatski</value></data>
+  <data name="Confirm" xml:space="preserve"><value>Potvrdi</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Odustani</value></data>
+  <data name="FavoriteTeamLabel" xml:space="preserve"><value>Omiljena reprezentacija:</value></data>
+  <data name="SettingsButton" xml:space="preserve"><value>Postavke</value></data>
+  <data name="Loading" xml:space="preserve"><value>Učitavanje...</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Greška</value></data>
+  <data name="ConfirmExitTitle" xml:space="preserve"><value>Izlaz</value></data>
+  <data name="ConfirmExitMessage" xml:space="preserve"><value>Jeste li sigurni da želite izaći?</value></data>
+  <data name="ConfirmSettingsMessage" xml:space="preserve"><value>Spremiti ove postavke?</value></data>
+  <data name="Yes" xml:space="preserve"><value>Da</value></data>
+  <data name="No" xml:space="preserve"><value>Ne</value></data>
+  <data name="FavoritePlayersTitle" xml:space="preserve"><value>Omiljeni igrači</value></data>
+  <data name="OtherPlayersTitle" xml:space="preserve"><value>Ostali igrači</value></data>
+  <data name="Captain" xml:space="preserve"><value>Kapetan</value></data>
+  <data name="MoveToFavorites" xml:space="preserve"><value>Premjesti u omiljene</value></data>
+  <data name="MoveToOthers" xml:space="preserve"><value>Premjesti u ostale</value></data>
+  <data name="FavoritesLimitMessage" xml:space="preserve"><value>Možete imati najviše 3 omiljena igrača.</value></data>
+  <data name="RankingsButton" xml:space="preserve"><value>Ljestvice</value></data>
+  <data name="TabPlayersByGoals" xml:space="preserve"><value>Igrači po golovima</value></data>
+  <data name="TabPlayersByYellow" xml:space="preserve"><value>Igrači po žutim kartonima</value></data>
+  <data name="TabMatchesByAttendance" xml:space="preserve"><value>Utakmice po posjećenosti</value></data>
+  <data name="ColPicture" xml:space="preserve"><value>Slika</value></data>
+  <data name="ColName" xml:space="preserve"><value>Ime</value></data>
+  <data name="ColShirt" xml:space="preserve"><value>Br.</value></data>
+  <data name="ColPosition" xml:space="preserve"><value>Pozicija</value></data>
+  <data name="ColAppearances" xml:space="preserve"><value>Nastupi</value></data>
+  <data name="ColGoals" xml:space="preserve"><value>Golovi</value></data>
+  <data name="ColYellowCards" xml:space="preserve"><value>Žuti kartoni</value></data>
+  <data name="ColLocation" xml:space="preserve"><value>Lokacija</value></data>
+  <data name="ColAttendance" xml:space="preserve"><value>Posjećenost</value></data>
+  <data name="ColHome" xml:space="preserve"><value>Domaćin</value></data>
+  <data name="ColAway" xml:space="preserve"><value>Gost</value></data>
+  <data name="ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="PrintButton" xml:space="preserve"><value>Ispiši u PDF</value></data>
+</root>
