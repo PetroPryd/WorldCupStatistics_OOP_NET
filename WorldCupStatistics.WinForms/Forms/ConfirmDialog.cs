@@ -28,8 +28,8 @@ namespace WorldCupStatistics.WinForms.Forms
                 Padding = new Padding(12)
             };
 
-            var yes = new Button { Text = Loc.T("Yes"), DialogResult = DialogResult.Yes, Width = 100 };
-            var no = new Button { Text = Loc.T("No"), DialogResult = DialogResult.No, Width = 100 };
+            var yes = new Button { Text = Loc.T("Yes"), DialogResult = DialogResult.Yes, Width = 100, Height = 30 };
+            var no = new Button { Text = Loc.T("No"), DialogResult = DialogResult.No, Width = 100, Height = 30 };
 
             var buttons = new FlowLayoutPanel
             {
@@ -44,8 +44,8 @@ namespace WorldCupStatistics.WinForms.Forms
             Controls.Add(label);
             Controls.Add(buttons);
 
-            AcceptButton = yes;   // Enter
-            CancelButton = no;    // Esc
+            AcceptButton = yes;
+            CancelButton = no;
         }
 
         public static bool Ask(IWin32Window? owner, string title, string message)

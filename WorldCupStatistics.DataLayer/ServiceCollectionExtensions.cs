@@ -18,7 +18,6 @@ namespace WorldCupStatistics.DataLayer
         {
             services.Configure<DataSourceConfig>(configuration.GetSection(DataSourceConfig.SectionName));
 
-            // Typed HttpClient for the API repository (handler pooling, base address from config).
             services.AddHttpClient<ApiWorldCupRepository>((sp, client) =>
             {
                 var cfg = sp.GetRequiredService<IOptions<DataSourceConfig>>().Value;
@@ -28,7 +27,6 @@ namespace WorldCupStatistics.DataLayer
 
             services.AddSingleton<JsonWorldCupRepository>();
 
-            // The config toggle: one line decides API vs JSON for the whole app.
             services.AddSingleton<IWorldCupRepository>(sp =>
             {
                 var mode = sp.GetRequiredService<IOptions<DataSourceConfig>>().Value.Mode;

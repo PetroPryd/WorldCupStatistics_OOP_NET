@@ -46,4 +46,5 @@
   <data name="ColAway" xml:space="preserve"><value>Away</value></data>
   <data name="ColDate" xml:space="preserve"><value>Date</value></data>
   <data name="PrintButton" xml:space="preserve"><value>Print to PDF</value></data>
+  <data name="SetImage" xml:space="preserve"><value>Set image…</value></data>
 </root>

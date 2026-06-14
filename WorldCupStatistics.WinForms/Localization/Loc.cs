@@ -13,21 +13,22 @@ namespace WorldCupStatistics.WinForms.Localization
         private static readonly ResourceManager Manager =
             new("WorldCupStatistics.WinForms.Localization.Strings", typeof(Loc).Assembly);
 
-        /// <summary>Sets the UI + formatting culture for the current and future threads.</summary>
+        public static CultureInfo Culture { get; private set; } = new CultureInfo("en-US");
+
         public static void ApplyCulture(string language)
         {
-            var culture = (language?.ToLowerInvariant()) switch
+            Culture = (language?.ToLowerInvariant()) switch
             {
                 "hr" => new CultureInfo("hr-HR"),
                 _ => new CultureInfo("en-US")
             };
-            CultureInfo.CurrentCulture = culture;
-            CultureInfo.CurrentUICulture = culture;
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            CultureInfo.CurrentCulture = Culture;
+            CultureInfo.CurrentUICulture = Culture;
+            CultureInfo.DefaultThreadCurrentCulture = Culture;
+            CultureInfo.DefaultThreadCurrentUICulture = Culture;
         }
 
         public static string T(string key) =>
-            Manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;
+            Manager.GetString(key, Culture) ?? key;
     }
 }

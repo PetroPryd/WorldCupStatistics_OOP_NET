@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace WorldCupStatistics.DataLayer.Dtos
 {
-    /// <summary>
-    /// Raw shape of /teams/results (results.json) and teams.json.
-    /// teams.json omits the standings fields — they deserialize to 0, which is fine.
-    /// </summary>
     internal sealed class TeamDto
     {
         public int Id { get; set; }

@@ -18,7 +18,6 @@ namespace WorldCupStatistics.WinForms.Forms
 
         public SettingsForm(AppSettings current)
         {
-            // Work on a copy so Cancel leaves the original untouched.
             Result = new AppSettings
             {
                 Gender = current.Gender,
@@ -50,7 +49,6 @@ namespace WorldCupStatistics.WinForms.Forms
             layout.Controls.Add(new Label { Text = Loc.T("LanguageLabel"), AutoSize = true, Anchor = AnchorStyles.Left }, 0, 1);
             layout.Controls.Add(_languageCombo, 1, 1);
 
-            // Gender items carry their enum value; display text is localized.
             _genderCombo.DisplayMember = nameof(ComboItem<Gender>.Text);
             _genderCombo.Items.Add(new ComboItem<Gender>(Loc.T("Men"), Gender.Men));
             _genderCombo.Items.Add(new ComboItem<Gender>(Loc.T("Women"), Gender.Women));
@@ -61,8 +59,8 @@ namespace WorldCupStatistics.WinForms.Forms
             _languageCombo.Items.Add(new ComboItem<string>(Loc.T("Croatian"), "hr"));
             _languageCombo.SelectedIndex = current.Language == "hr" ? 1 : 0;
 
-            var confirm = new Button { Text = Loc.T("Confirm"), Width = 110 };
-            var cancel = new Button { Text = Loc.T("Cancel"), Width = 110 };
+            var confirm = new Button { Text = Loc.T("Confirm"), Width = 110, Height = 30 };
+            var cancel = new Button { Text = Loc.T("Cancel"), Width = 110, Height = 30 };
             confirm.Click += OnConfirm;
             cancel.Click += (_, _) => { DialogResult = DialogResult.Cancel; Close(); };
 
@@ -79,14 +77,14 @@ namespace WorldCupStatistics.WinForms.Forms
             Controls.Add(layout);
             Controls.Add(buttons);
 
-            AcceptButton = confirm;   // Enter
-            CancelButton = cancel;    // Esc
+            AcceptButton = confirm;
+            CancelButton = cancel;
         }
 
         private void OnConfirm(object? sender, EventArgs e)
         {
             if (!ConfirmDialog.Ask(this, Loc.T("SettingsTitle"), Loc.T("ConfirmSettingsMessage")))
-                return;   // user said No → stay on the form
+                return;
 
             Result.Gender = ((ComboItem<Gender>)_genderCombo.SelectedItem!).Value;
             Result.Language = ((ComboItem<string>)_languageCombo.SelectedItem!).Value;
@@ -94,7 +92,6 @@ namespace WorldCupStatistics.WinForms.Forms
             Close();
         }
 
-        /// <summary>Small typed wrapper so a ComboBox item shows localized text but carries a real value.</summary>
         private sealed record ComboItem<T>(string Text, T Value)
         {
             public override string ToString() => Text;

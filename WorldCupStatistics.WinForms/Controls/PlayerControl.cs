@@ -19,10 +19,9 @@ namespace WorldCupStatistics.WinForms.Controls
         private readonly Label _captainLabel = new();
         private readonly Label _starLabel = new();
 
-        /// <summary>Raised for a mouse press anywhere on the card (incl. its child controls).</summary>
         public event MouseEventHandler? CardMouseDown;
-        /// <summary>Raised for mouse movement anywhere on the card.</summary>
         public event MouseEventHandler? CardMouseMove;
+        public event Action<PlayerControl>? SetImageRequested;
 
         public Player Player { get; }
         public int ShirtNumber => Player.ShirtNumber;
@@ -46,50 +45,68 @@ namespace WorldCupStatistics.WinForms.Controls
             Player = player;
 
             Width = 230;
-            Height = 76;
+            Height = 84;
             Margin = new Padding(6);
             BackColor = DefaultColor;
             BorderStyle = BorderStyle.FixedSingle;
+
+            if (player.IsCaptain)
+            {
+                BorderStyle = BorderStyle.None;
+                Padding = new Padding(2);
+            }
 
             _picture.Size = new Size(60, 60);
             _picture.Location = new Point(8, 8);
             _picture.SizeMode = PictureBoxSizeMode.Zoom;
             _picture.Image = ImageLoader.Load(imagePath);
 
+            var textStack = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoSize = true,
+                Location = new Point(78, 8),
+                Size = new Size(148, 64),
+                Margin = new Padding(0)
+            };
+
             _nameLabel.Text = player.Name;
             _nameLabel.Font = new Font(Font.FontFamily, 9.5f, FontStyle.Bold);
-            _nameLabel.Location = new Point(78, 8);
             _nameLabel.AutoSize = true;
-            _nameLabel.MaximumSize = new Size(140, 0);
+            _nameLabel.MaximumSize = new Size(148, 0);
+            _nameLabel.Margin = new Padding(0);
 
             _detailLabel.Text = $"#{player.ShirtNumber}  {player.Position}";
-            _detailLabel.Location = new Point(78, 32);
             _detailLabel.AutoSize = true;
             _detailLabel.ForeColor = Color.DimGray;
+            _detailLabel.Margin = new Padding(0, 2, 0, 0);
 
             _captainLabel.Text = Loc.T("Captain");
-            _captainLabel.Location = new Point(78, 52);
             _captainLabel.AutoSize = true;
             _captainLabel.ForeColor = Color.SaddleBrown;
             _captainLabel.Font = new Font(Font.FontFamily, 8f, FontStyle.Bold);
             _captainLabel.Visible = player.IsCaptain;
+            _captainLabel.Margin = new Padding(0, 2, 0, 0);
+
+            textStack.Controls.Add(_nameLabel);
+            textStack.Controls.Add(_detailLabel);
+            textStack.Controls.Add(_captainLabel);
 
             _starLabel.Text = "★";
-            _starLabel.Font = new Font(Font.FontFamily, 14f, FontStyle.Bold);
+            _starLabel.Font = new Font(Font.FontFamily, 12f, FontStyle.Bold);
             _starLabel.ForeColor = Color.Goldenrod;
-            _starLabel.Location = new Point(202, 6);
+            _starLabel.Location = new Point(196, 8);
             _starLabel.AutoSize = true;
             _starLabel.Visible = isFavorite;
             _isFavorite = isFavorite;
 
             Controls.Add(_picture);
-            Controls.Add(_nameLabel);
-            Controls.Add(_detailLabel);
-            Controls.Add(_captainLabel);
+            Controls.Add(textStack);
             Controls.Add(_starLabel);
 
-            // Forward children's input to the card so the whole thing acts as one unit.
-            foreach (Control child in new Control[] { _picture, _nameLabel, _detailLabel, _captainLabel, _starLabel })
+
+            foreach (Control child in new Control[] { _picture, textStack, _nameLabel, _detailLabel, _captainLabel, _starLabel })
             {
                 child.Click += (_, e) => OnClick(e);
                 child.MouseDown += (_, e) => CardMouseDown?.Invoke(this, e);
@@ -99,18 +116,50 @@ namespace WorldCupStatistics.WinForms.Controls
             MouseMove += (_, e) => CardMouseMove?.Invoke(this, e);
         }
 
-        /// <summary>Attaches the same context menu to the card and all its children.</summary>
+        public void ReloadImage(string imagePath)
+        {
+            var old = _picture.Image;
+            _picture.Image = ImageLoader.Load(imagePath);
+            old?.Dispose();
+        }
+
         public void SetContextMenu(ContextMenuStrip menu)
         {
             ContextMenuStrip = menu;
-            foreach (Control child in Controls)
+            AttachMenu(this, menu);
+        }
+
+        private static void AttachMenu(Control parent, ContextMenuStrip menu)
+        {
+            foreach (Control child in parent.Controls)
+            {
                 child.ContextMenuStrip = menu;
+                AttachMenu(child, menu);
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing) _picture.Image?.Dispose();
             base.Dispose(disposing);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (!Player.IsCaptain) return;
+
+            var g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            for (int i = 3; i >= 1; i--)
+            {
+                using var glowPen = new Pen(Color.FromArgb(40, 255, 200, 0), i * 2);
+                g.DrawRectangle(glowPen, i, i, Width - 1 - i * 2, Height - 1 - i * 2);
+            }
+
+            using var goldPen = new Pen(Color.Goldenrod, 2);
+            g.DrawRectangle(goldPen, 1, 1, Width - 3, Height - 3);
         }
     }
 }

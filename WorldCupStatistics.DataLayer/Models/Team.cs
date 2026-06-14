@@ -21,7 +21,6 @@ namespace WorldCupStatistics.DataLayer.Models
         public int GoalsAgainst { get; init; }
         public int GoalDifferential { get; init; }
 
-        /// <summary>Display form required by both clients: "NAME (FIFA_CODE)".</summary>
         public string DisplayName => $"{Country} ({FifaCode})";
     }
 }

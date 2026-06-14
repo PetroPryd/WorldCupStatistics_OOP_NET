@@ -12,11 +12,11 @@ namespace WorldCupStatistics.DataLayer.Settings
     public sealed class AppSettings
     {
         public Gender Gender { get; set; } = Gender.Men;
-        public string Language { get; set; } = "en";                 // "en" or "hr"
+        public string Language { get; set; } = "en";
         public string? FavoriteTeamFifaCode { get; set; }
-        public List<int> FavoritePlayerNumbers { get; set; } = [];   // shirt numbers, unique within a team
+        public List<int> FavoritePlayerNumbers { get; set; } = [];
         public DisplayMode DisplayMode { get; set; } = DisplayMode.Fullscreen;
-        public int WindowWidth { get; set; } = 1280;                 // used when DisplayMode = Windowed
+        public int WindowWidth { get; set; } = 1280;
         public int WindowHeight { get; set; } = 720;
     }
 }

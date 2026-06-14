@@ -19,7 +19,7 @@ namespace WorldCupStatistics.WPF.Views
             if (owner is not null)
             {
                 try { dialog.Owner = owner; }
-                catch (InvalidOperationException) { /* owner not shown yet — center on screen instead */ }
+                catch (InvalidOperationException) {  }
             }
 
             if (dialog.Owner is null)

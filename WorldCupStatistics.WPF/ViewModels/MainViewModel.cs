@@ -23,6 +23,10 @@ namespace WorldCupStatistics.WPF.ViewModels
         public string SelectedTeamName => _selectedTeam?.DisplayName ?? "";
         public string SelectedOpponentName => _selectedOpponent?.DisplayName ?? "";
 
+        public Team? SelectedTeamObject => _selectedTeam;
+        public Team? SelectedOpponentObject => _selectedOpponent;
+        public Match? CurrentMatch { get; private set; }
+
         public ObservableCollection<Team> Teams { get; } = new();
         public ObservableCollection<Team> Opponents { get; } = new();
 
@@ -102,6 +106,7 @@ namespace WorldCupStatistics.WPF.ViewModels
             try
             {
                 var match = await _worldCup.GetMatchBetweenAsync(_settings.Gender, _selectedTeam.FifaCode, _selectedOpponent.FifaCode);
+                CurrentMatch = match;
                 ResultText = BuildResultText(match);
                 MatchLoaded?.Invoke(match);
             }

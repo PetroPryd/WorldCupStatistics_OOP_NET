@@ -14,12 +14,12 @@ namespace WorldCupStatistics.DataLayer.Dtos
         public string? Status { get; set; }
         public string? Time { get; set; }
         public string? FifaId { get; set; }
-        public string? Attendance { get; set; }       // string in the source, e.g. "41064"
+        public string? Attendance { get; set; }
         public string? StageName { get; set; }
         public string? HomeTeamCountry { get; set; }
         public string? AwayTeamCountry { get; set; }
 
-        [JsonPropertyName("datetime")]                 // not "date_time"
+        [JsonPropertyName("datetime")]
         public DateTime Datetime { get; set; }
 
         public string? Winner { get; set; }
@@ -54,8 +54,8 @@ namespace WorldCupStatistics.DataLayer.Dtos
     internal sealed class TeamStatisticsDto
     {
         public string Country { get; set; } = "";
-        public int YellowCards { get; set; }
-        public int RedCards { get; set; }
+        public int? YellowCards { get; set; }
+        public int? RedCards { get; set; }
         public List<PlayerDto> StartingEleven { get; set; } = [];
         public List<PlayerDto> Substitutes { get; set; } = [];
     }

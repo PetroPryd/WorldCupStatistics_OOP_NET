@@ -12,7 +12,6 @@ namespace WorldCupStatistics.DataLayer.Services
         string SettingsFilePath { get; }
         bool Exists { get; }
 
-        /// <summary>Loads settings, or null if the file is missing/unreadable (so the app can re-prompt).</summary>
         AppSettings? Load();
 
         void Save(AppSettings settings);

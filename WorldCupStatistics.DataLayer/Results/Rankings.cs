@@ -7,19 +7,17 @@ using WorldCupStatistics.DataLayer.Models;
 
 namespace WorldCupStatistics.DataLayer.Results
 {
-    /// <summary>A player of the selected team with stats aggregated across that team's matches.</summary>
     public sealed record PlayerRanking
     {
         public required string Name { get; init; }
-        public int ShirtNumber { get; init; }      // image key + display
+        public int ShirtNumber { get; init; }
         public Position Position { get; init; }
         public bool IsCaptain { get; init; }
-        public int Appearances { get; init; }       // matches where in starting_eleven or substitutes
+        public int Appearances { get; init; }
         public int Goals { get; init; }
         public int YellowCards { get; init; }
     }
 
-    /// <summary>A single match ranked by attendance, for the selected team.</summary>
     public sealed record MatchAttendance
     {
         public required string Location { get; init; }

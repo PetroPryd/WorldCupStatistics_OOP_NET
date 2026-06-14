@@ -20,7 +20,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -28,13 +30,17 @@
                        Text="{Binding [FavoriteTeamLabel], Source={x:Static loc:Loc.Instance}}"/>
             <ComboBox Grid.Column="1" ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}"
                       DisplayMemberPath="DisplayName"/>
+            <Button Grid.Column="2" Margin="6,0,0,0" Padding="10,4" Click="TeamInfo_Click"
+                    Content="{Binding [TeamInfoButton], Source={x:Static loc:Loc.Instance}}"/>
 
-            <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="16,0,8,0"
+            <TextBlock Grid.Column="3" VerticalAlignment="Center" Margin="16,0,8,0"
                        Text="{Binding [OpponentLabel], Source={x:Static loc:Loc.Instance}}"/>
-            <ComboBox Grid.Column="3" ItemsSource="{Binding Opponents}" SelectedItem="{Binding SelectedOpponent}"
+            <ComboBox Grid.Column="4" ItemsSource="{Binding Opponents}" SelectedItem="{Binding SelectedOpponent}"
                       DisplayMemberPath="DisplayName"/>
+            <Button Grid.Column="5" Margin="6,0,0,0" Padding="10,4" Click="OpponentInfo_Click"
+                    Content="{Binding [TeamInfoButton], Source={x:Static loc:Loc.Instance}}"/>
 
-            <Button Grid.Column="4" Margin="16,0,0,0" Padding="12,4" Click="Settings_Click"
+            <Button Grid.Column="6" Margin="16,0,0,0" Padding="12,4" Click="Settings_Click"
                     Content="{Binding [SettingsButton], Source={x:Static loc:Loc.Instance}}"/>
         </Grid>
 

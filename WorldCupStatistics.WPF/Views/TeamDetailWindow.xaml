@@ -1,0 +1,62 @@
+﻿<Window x:Class="WorldCupStatistics.WPF.Views.TeamDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:WorldCupStatistics.WPF.Localization"
+        Title="{Binding [AppTitle], Source={x:Static loc:Loc.Instance}}"
+        Width="360" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="ZoomTransform" ScaleX="0.7" ScaleY="0.7"/>
+        </Grid.RenderTransform>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="ZoomTransform" Storyboard.TargetProperty="ScaleX"
+                                         From="0.7" To="1" Duration="0:0:0.5"/>
+                        <DoubleAnimation Storyboard.TargetName="ZoomTransform" Storyboard.TargetProperty="ScaleY"
+                                         From="0.7" To="1" Duration="0:0:0.5"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <StackPanel Margin="18">
+            <TextBlock x:Name="TeamName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="{Binding [FifaCode], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="FifaCode" FontWeight="Bold"/>
+                <TextBlock Grid.Row="1" Text="{Binding [Games], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="Games" FontWeight="Bold"/>
+                <TextBlock Grid.Row="2" Text="{Binding [Wins], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="Wins" FontWeight="Bold"/>
+                <TextBlock Grid.Row="3" Text="{Binding [Draws], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" x:Name="Draws" FontWeight="Bold"/>
+                <TextBlock Grid.Row="4" Text="{Binding [Losses], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" x:Name="Losses" FontWeight="Bold"/>
+                <TextBlock Grid.Row="5" Text="{Binding [GoalsFor], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" x:Name="GoalsFor" FontWeight="Bold"/>
+                <TextBlock Grid.Row="6" Text="{Binding [GoalsAgainst], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" x:Name="GoalsAgainst" FontWeight="Bold"/>
+                <TextBlock Grid.Row="7" Text="{Binding [GoalDiff], Source={x:Static loc:Loc.Instance}}"/>
+                <TextBlock Grid.Row="7" Grid.Column="1" x:Name="GoalDiff" FontWeight="Bold"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

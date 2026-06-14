@@ -34,6 +34,7 @@ namespace WorldCupStatistics.WinForms.Forms
         private readonly ContextMenuStrip _playerMenu = new();
         private readonly ToolStripMenuItem _moveToFavItem = new();
         private readonly ToolStripMenuItem _moveToOthersItem = new();
+        private readonly ToolStripMenuItem _setImageItem = new();
 
         private readonly LoadingOverlay _loading = new();
 
@@ -61,6 +62,11 @@ namespace WorldCupStatistics.WinForms.Forms
             _teamCombo.SelectedIndexChanged += OnTeamChanged;
             _settingsButton.Click += OnSettingsClicked;
             _rankingsButton.Click += OnRankingsClicked;
+
+            _teamLabel.AutoSize = true;
+            _teamLabel.Anchor = AnchorStyles.Left;
+            _teamLabel.Margin = new Padding(3, 10, 3, 3);
+
             top.Controls.Add(_teamLabel);
             top.Controls.Add(_teamCombo);
             top.Controls.Add(_settingsButton);
@@ -77,8 +83,15 @@ namespace WorldCupStatistics.WinForms.Forms
 
             _moveToFavItem.Click += (_, _) => MoveSelectionTo(_favoritesPanel);
             _moveToOthersItem.Click += (_, _) => MoveSelectionTo(_othersPanel);
+            _setImageItem.Click += (_, _) =>
+            {
+                var card = ResolvePlayer(_playerMenu.SourceControl) ?? _selection.FirstOrDefault();
+                if (card is not null) _ = SetPlayerImageAsync(card);
+            };
             _playerMenu.Items.Add(_moveToFavItem);
             _playerMenu.Items.Add(_moveToOthersItem);
+            _playerMenu.Items.Add(new ToolStripSeparator());
+            _playerMenu.Items.Add(_setImageItem);
             _playerMenu.Opening += OnPlayerMenuOpening;
 
             var split = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 1, Padding = new Padding(10) };
@@ -113,10 +126,9 @@ namespace WorldCupStatistics.WinForms.Forms
             _othersGroup.Text = Loc.T("OtherPlayersTitle");
             _moveToFavItem.Text = Loc.T("MoveToFavorites");
             _moveToOthersItem.Text = Loc.T("MoveToOthers");
+            _setImageItem.Text = Loc.T("SetImage");
             _rankingsButton.Text = Loc.T("RankingsButton");
         }
-
-        // ---------- data loading ----------
 
         private async Task LoadTeamsAsync()
         {
@@ -172,6 +184,7 @@ namespace WorldCupStatistics.WinForms.Forms
                 control.Click += (_, _) => HandleCardClick(control);
                 control.CardMouseDown += (_, e) => OnCardMouseDown(control, e);
                 control.CardMouseMove += (_, e) => OnCardMouseMove(e);
+                control.SetImageRequested += c => _ = SetPlayerImageAsync(c);
                 control.SetContextMenu(_playerMenu);
 
                 (isFavorite ? _favoritesPanel : _othersPanel).Controls.Add(control);
@@ -185,7 +198,27 @@ namespace WorldCupStatistics.WinForms.Forms
             foreach (var control in existing) control.Dispose();
         }
 
-        // ---------- selection ----------
+        private async Task SetPlayerImageAsync(PlayerControl card)
+        {
+            if (_currentTeam is null) return;
+
+            using var dialog = new OpenFileDialog
+            {
+                Title = Loc.T("SetImage"),
+                Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp;*.gif|All files|*.*"
+            };
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+
+            try
+            {
+                await _imageService.SetPlayerImageAsync(
+                    _settings.Gender, _currentTeam.FifaCode, card.ShirtNumber, dialog.FileName);
+
+                var newPath = _imageService.GetPlayerImagePath(_settings.Gender, _currentTeam.FifaCode, card.ShirtNumber);
+                card.ReloadImage(newPath);
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
 
         private void HandleCardClick(PlayerControl control)
         {
@@ -226,8 +259,6 @@ namespace WorldCupStatistics.WinForms.Forms
             ClearSelection();
             for (int i = Math.Min(a, b); i <= Math.Max(a, b); i++) AddToSelection(cards[i]);
         }
-
-        // ---------- drag & drop ----------
 
         private void OnCardMouseDown(PlayerControl control, MouseEventArgs e)
         {
@@ -270,8 +301,6 @@ namespace WorldCupStatistics.WinForms.Forms
             if (sender is FlowLayoutPanel target) MoveSelectionTo(target);
         }
 
-        // ---------- context menu ----------
-
         private void OnPlayerMenuOpening(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             var source = ResolvePlayer(_playerMenu.SourceControl);
@@ -285,6 +314,7 @@ namespace WorldCupStatistics.WinForms.Forms
 
             _moveToFavItem.Enabled = _selection.Any(c => c.Parent == _othersPanel);
             _moveToOthersItem.Enabled = _selection.Any(c => c.Parent == _favoritesPanel);
+            _setImageItem.Enabled = _selection.Count == 1;
         }
 
         private static PlayerControl? ResolvePlayer(Control? c)
@@ -292,8 +322,6 @@ namespace WorldCupStatistics.WinForms.Forms
             while (c is not null and not PlayerControl) c = c.Parent;
             return c as PlayerControl;
         }
-
-        // ---------- moving ----------
 
         private void MoveSelectionTo(FlowLayoutPanel target)
         {
@@ -327,15 +355,13 @@ namespace WorldCupStatistics.WinForms.Forms
                 .Select(c => c.ShirtNumber).ToList();
 
             _settings.FavoritePlayerNumbers = favouriteNumbers;
-            // The team you're choosing favourites for is, by definition, your favourite team.
+
             _settings.FavoriteTeamFifaCode = favouriteNumbers.Count > 0 ? _currentTeam?.FifaCode : null;
             TrySaveSettings();
 
             foreach (var c in _favoritesPanel.Controls.OfType<PlayerControl>()) c.IsFavorite = true;
             foreach (var c in _othersPanel.Controls.OfType<PlayerControl>()) c.IsFavorite = false;
         }
-
-        // ---------- settings / closing ----------
 
         private async void OnSettingsClicked(object? sender, EventArgs e)
         {

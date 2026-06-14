@@ -27,4 +27,18 @@
   <data name="ResultLabel" xml:space="preserve"><value>Result:</value></data>
   <data name="SettingsButton" xml:space="preserve"><value>Settings</value></data>
   <data name="Loading" xml:space="preserve"><value>Loading...</value></data>
+  <data name="TeamInfoButton" xml:space="preserve"><value>Info</value></data>
+  <data name="FifaCode" xml:space="preserve"><value>FIFA code</value></data>
+  <data name="Games" xml:space="preserve"><value>Games played</value></data>
+  <data name="Wins" xml:space="preserve"><value>Wins</value></data>
+  <data name="Draws" xml:space="preserve"><value>Draws</value></data>
+  <data name="Losses" xml:space="preserve"><value>Losses</value></data>
+  <data name="GoalsFor" xml:space="preserve"><value>Goals for</value></data>
+  <data name="GoalsAgainst" xml:space="preserve"><value>Goals against</value></data>
+  <data name="GoalDiff" xml:space="preserve"><value>Goal difference</value></data>
+  <data name="Position" xml:space="preserve"><value>Position</value></data>
+  <data name="ShirtNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="Captain" xml:space="preserve"><value>Captain</value></data>
+  <data name="GoalsInMatch" xml:space="preserve"><value>Goals (this match)</value></data>
+  <data name="YellowsInMatch" xml:space="preserve"><value>Yellow cards (this match)</value></data>
 </root>

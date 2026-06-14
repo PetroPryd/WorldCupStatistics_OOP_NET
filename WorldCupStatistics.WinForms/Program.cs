@@ -18,7 +18,7 @@ namespace WorldCupStatistics.WinForms
             ApplicationConfiguration.Initialize();
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)   // exe folder → where appsettings.json is copied
+                .SetBasePath(AppContext.BaseDirectory) 
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 

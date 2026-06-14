@@ -12,7 +12,6 @@ namespace WorldCupStatistics.DataLayer.Models
         public IReadOnlyList<Player> StartingEleven { get; init; } = [];
         public IReadOnlyList<Player> Substitutes { get; init; } = [];
 
-        /// <summary>Union used to build the favorite-player pool from the first match.</summary>
         public IEnumerable<Player> AllPlayers => StartingEleven.Concat(Substitutes);
     }
 }

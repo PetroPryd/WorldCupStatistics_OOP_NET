@@ -27,4 +27,18 @@
   <data name="ResultLabel" xml:space="preserve"><value>Rezultat:</value></data>
   <data name="SettingsButton" xml:space="preserve"><value>Postavke</value></data>
   <data name="Loading" xml:space="preserve"><value>Učitavanje...</value></data>
+  <data name="TeamInfoButton" xml:space="preserve"><value>Podaci</value></data>
+  <data name="FifaCode" xml:space="preserve"><value>FIFA kod</value></data>
+  <data name="Games" xml:space="preserve"><value>Odigrane utakmice</value></data>
+  <data name="Wins" xml:space="preserve"><value>Pobjede</value></data>
+  <data name="Draws" xml:space="preserve"><value>Neriješeno</value></data>
+  <data name="Losses" xml:space="preserve"><value>Porazi</value></data>
+  <data name="GoalsFor" xml:space="preserve"><value>Postignuti golovi</value></data>
+  <data name="GoalsAgainst" xml:space="preserve"><value>Primljeni golovi</value></data>
+  <data name="GoalDiff" xml:space="preserve"><value>Gol razlika</value></data>
+  <data name="Position" xml:space="preserve"><value>Pozicija</value></data>
+  <data name="ShirtNumber" xml:space="preserve"><value>Broj</value></data>
+  <data name="Captain" xml:space="preserve"><value>Kapetan</value></data>
+  <data name="GoalsInMatch" xml:space="preserve"><value>Golovi (ova utakmica)</value></data>
+  <data name="YellowsInMatch" xml:space="preserve"><value>Žuti kartoni (ova utakmica)</value></data>
 </root>

@@ -10,6 +10,6 @@ namespace WorldCupStatistics.DataLayer.Models
     {
         public MatchEventType Type { get; init; }
         public required string Player { get; init; }
-        public string? Time { get; init; }   // e.g. "90'+1'" — kept as string, not numeric
+        public string? Time { get; init; }
     }
 }

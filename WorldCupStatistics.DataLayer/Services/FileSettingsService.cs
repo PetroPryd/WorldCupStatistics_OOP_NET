@@ -58,7 +58,7 @@ namespace WorldCupStatistics.DataLayer.Services
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
-                return null;   // corrupt/locked → treat as "no settings", don't crash
+                return null;
             }
         }
 

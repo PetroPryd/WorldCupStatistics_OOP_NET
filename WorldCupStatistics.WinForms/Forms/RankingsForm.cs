@@ -159,7 +159,7 @@ namespace WorldCupStatistics.WinForms.Forms
 
                 PrintTable(Loc.T("TabMatchesByAttendance"),
                     new[] { Loc.T("ColLocation"), Loc.T("ColAttendance"), Loc.T("ColHome"), Loc.T("ColAway"), Loc.T("ColDate") },
-                    rows, new float[] { 26, 13, 17, 17, 27 });   // 5 columns
+                    rows, new float[] { 26, 13, 17, 17, 27 });
             }
             else
             {
@@ -174,7 +174,7 @@ namespace WorldCupStatistics.WinForms.Forms
 
                 PrintTable(title,
                     new[] { Loc.T("ColName"), Loc.T("ColShirt"), Loc.T("ColPosition"), Loc.T("ColAppearances"), Loc.T("ColGoals"), Loc.T("ColYellowCards") },
-                    rows, new float[] { 32, 9, 20, 14, 12, 13 });   // 6 columns
+                    rows, new float[] { 32, 9, 20, 14, 12, 13 });
             }
         }
 

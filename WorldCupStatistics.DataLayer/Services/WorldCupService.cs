@@ -14,7 +14,6 @@ namespace WorldCupStatistics.DataLayer.Services
     {
         private readonly IWorldCupRepository _repository;
 
-        // Per-gender caches: the match/team sets don't change during a run, and matches.json is large.
         private readonly ConcurrentDictionary<Gender, IReadOnlyList<Match>> _matchCache = new();
         private readonly ConcurrentDictionary<Gender, IReadOnlyList<Team>> _teamCache = new();
 
@@ -59,7 +58,6 @@ namespace WorldCupStatistics.DataLayer.Services
                 .Select(m => Same(m.HomeTeam.Code, fifaCode) ? m.AwayTeam.Code : m.HomeTeam.Code)
                 .Distinct(StringComparer.OrdinalIgnoreCase);
 
-            // Map codes back to full Team records (so the ComboBox shows "NAME (FIFA_CODE)").
             return opponentCodes
                 .Select(code => teams.FirstOrDefault(t => Same(t.FifaCode, code))
                                 ?? new Team { Country = code, FifaCode = code })
@@ -79,7 +77,6 @@ namespace WorldCupStatistics.DataLayer.Services
                 .Where(m => m.Involves(fifaCode))
                 .ToList();
 
-            // Identity = normalized name. Track the richest known profile + per-match tallies.
             var profiles = new Dictionary<string, Player>();
             var appearances = new Dictionary<string, int>();
             var goals = new Dictionary<string, int>();
@@ -140,8 +137,6 @@ namespace WorldCupStatistics.DataLayer.Services
                 .ToList();
         }
 
-        // ---- helpers ----
-
         private async Task<IReadOnlyList<Match>> GetMatchesAsync(Gender gender, CancellationToken ct)
         {
             if (_matchCache.TryGetValue(gender, out var cached)) return cached;
@@ -152,13 +147,11 @@ namespace WorldCupStatistics.DataLayer.Services
 
         private static bool Same(string a, string b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
 
-        /// <summary>The statistics block (starting XI + subs) for the given team within a match.</summary>
         private static TeamStatistics? StatsFor(Match m, string fifaCode) =>
             Same(m.HomeTeam.Code, fifaCode) ? m.HomeTeamStatistics
             : Same(m.AwayTeam.Code, fifaCode) ? m.AwayTeamStatistics
             : null;
 
-        /// <summary>The events belonging to the given team within a match.</summary>
         private static IReadOnlyList<MatchEvent> EventsFor(Match m, string fifaCode) =>
             Same(m.HomeTeam.Code, fifaCode) ? m.HomeTeamEvents
             : Same(m.AwayTeam.Code, fifaCode) ? m.AwayTeamEvents

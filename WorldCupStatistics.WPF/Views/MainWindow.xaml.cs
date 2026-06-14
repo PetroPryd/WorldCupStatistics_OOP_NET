@@ -29,6 +29,16 @@ namespace WorldCupStatistics.WPF.Views
         private readonly AppSettings _settings;
         private readonly MainViewModel _vm;
 
+        private void TeamInfo_Click(object sender, RoutedEventArgs e) => ShowTeamDetail(_vm.SelectedTeamObject);
+        private void OpponentInfo_Click(object sender, RoutedEventArgs e) => ShowTeamDetail(_vm.SelectedOpponentObject);
+
+        private void ShowTeamDetail(Team? team)
+        {
+            if (team is null) return;
+            var window = new TeamDetailWindow(team) { Owner = this };
+            window.ShowDialog();
+        }
+
         public MainWindow(IWorldCupService worldCup, ISettingsService settingsService, AppSettings settings)
         {
             InitializeComponent();
@@ -65,7 +75,13 @@ namespace WorldCupStatistics.WPF.Views
 
             Pitch.PlayerSelected += player =>
             {
-                // Phase 13: open the animated player-detail window here.
+                if (_vm.CurrentMatch is null) return;
+                var imgService = App.Services.GetRequiredService<IImageService>();
+                var code = CodeForPlayer(_vm.CurrentMatch, player);
+                var path = imgService.GetPlayerImagePath(_vm.Gender, code, player.ShirtNumber);
+
+                var window = new PlayerDetailWindow(player, _vm.CurrentMatch, path) { Owner = this };
+                window.ShowDialog();
             };
 
             Loaded += async (_, _) => await _vm.LoadAsync();
@@ -138,10 +154,15 @@ namespace WorldCupStatistics.WPF.Views
             {
                 var card = new Controls.PlayerCard(p, imageService.GetPlayerImagePath(_vm.Gender, code ?? "", p.ShirtNumber))
                 {
-                    Margin = new System.Windows.Thickness(2),
-                    Width = 160
+                    Margin = new System.Windows.Thickness(2)
                 };
-                card.Selected += player => { /* Phase 13: player detail */ };
+                card.UseLargeLayout();
+                card.Selected += player =>
+                {
+                    if (_vm.CurrentMatch is null) return;
+                    var detail = new PlayerDetailWindow(player, _vm.CurrentMatch, imageService.GetPlayerImagePath(_vm.Gender, code ?? "", player.ShirtNumber)) { Owner = this };
+                    detail.ShowDialog();
+                };
                 host.Items.Add(card);
             }
         }

@@ -36,7 +36,6 @@ namespace WorldCupStatistics.DataLayer.Services
                 var dir = PlayerDir(gender, fifaCode);
                 Directory.CreateDirectory(dir);
 
-                // Drop any previous image for this player (it may have a different extension).
                 foreach (var existing in Directory.EnumerateFiles(dir, $"{shirtNumber}.*"))
                     File.Delete(existing);
 

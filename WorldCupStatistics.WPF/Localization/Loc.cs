@@ -27,7 +27,7 @@ namespace WorldCupStatistics.WPF.Localization
                 : new CultureInfo("en-US");
             CultureInfo.CurrentCulture = _culture;
             CultureInfo.CurrentUICulture = _culture;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item[]"));   // refresh all [Key] bindings
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item[]"));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

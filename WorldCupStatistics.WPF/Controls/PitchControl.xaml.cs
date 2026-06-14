@@ -26,7 +26,6 @@ namespace WorldCupStatistics.WPF.Controls
 
         public event Action<Player>? PlayerSelected;
 
-
         public PitchControl()
         {
             InitializeComponent();
@@ -61,9 +60,7 @@ namespace WorldCupStatistics.WPF.Controls
             DrawMarkings(w, h);
 
             PlayersCanvas.Children.Clear();
-
             PlaceHalf(_topPlayers, w, topHalf: true, h);
-
             PlaceHalf(_bottomPlayers, w, topHalf: false, h);
         }
 
@@ -91,44 +88,44 @@ namespace WorldCupStatistics.WPF.Controls
             var unknown = players.Where(p => !RowOrder.Contains(p.Position)).ToList();
             if (unknown.Count > 0) rows[2].AddRange(unknown);
 
-            double halfHeight = h / 2;
             const int maxPerLine = 4;
-
-            for (int band = 0; band < rows.Count; band++)
+            var lines = new List<List<Player>>();
+            foreach (var row in rows)
             {
-                var rowPlayers = rows[band];
-                if (rowPlayers.Count == 0) continue;
+                if (row.Count == 0) continue;
+                for (int i = 0; i < row.Count; i += maxPerLine)
+                    lines.Add(row.Skip(i).Take(maxPerLine).ToList());
+            }
+            if (lines.Count == 0) return;
 
-                double bandFraction = 0.08 + (band + 0.5) / rows.Count * 0.84;
-                double bandY = topHalf ? bandFraction * halfHeight : h - bandFraction * halfHeight;
+            double halfHeight = h / 2;
+            double cardH = 48;
 
-                // Split crowded rows into 1 or 2 lines.
-                int lines = rowPlayers.Count > maxPerLine ? 2 : 1;
-                double lineGap = halfHeight / rows.Count * 0.42;
+            double edgeMargin = cardH * 0.9;
+            double centreMargin = cardH * 0.7;
+            double bandStart = edgeMargin;
+            double bandEnd = halfHeight - centreMargin;
+            if (bandEnd <= bandStart) { bandStart = cardH / 2; bandEnd = halfHeight - cardH / 2; }
 
-                for (int line = 0; line < lines; line++)
+            for (int line = 0; line < lines.Count; line++)
+            {
+                double t = lines.Count == 1 ? 0.0 : (double)line / (lines.Count - 1);
+                double offset = bandStart + t * (bandEnd - bandStart);
+                double y = topHalf ? offset : h - offset;
+
+                var linePlayers = lines[line];
+                for (int i = 0; i < linePlayers.Count; i++)
                 {
-                    var linePlayers = rowPlayers
-                        .Where((_, idx) => idx % lines == line)
-                        .ToList();
-                    if (linePlayers.Count == 0) continue;
+                    double x = (i + 1.0) / (linePlayers.Count + 1) * w;
+                    var card = new PlayerCard(linePlayers[i], _imagePathResolver!(linePlayers[i]));
+                    card.Selected += p => PlayerSelected?.Invoke(p);
 
-                    double y = bandY;
-                    if (lines == 2)
-                        y += (line == 0 ? -lineGap / 2 : lineGap / 2) * (topHalf ? 1 : -1);
-
-                    for (int i = 0; i < linePlayers.Count; i++)
-                    {
-                        double x = (i + 1.0) / (linePlayers.Count + 1) * w;
-                        var card = new PlayerCard(linePlayers[i], _imagePathResolver!(linePlayers[i]));
-                        card.Selected += p => PlayerSelected?.Invoke(p);
-
-                        card.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                        double cardW = card.DesiredSize.Width, cardH = card.DesiredSize.Height;
-                        Canvas.SetLeft(card, x - cardW / 2);
-                        Canvas.SetTop(card, y - cardH / 2);
-                        PlayersCanvas.Children.Add(card);
-                    }
+                    card.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    double cardW = card.DesiredSize.Width;
+                    double ch = card.DesiredSize.Height;
+                    Canvas.SetLeft(card, x - cardW / 2);
+                    Canvas.SetTop(card, y - ch / 2);
+                    PlayersCanvas.Children.Add(card);
                 }
             }
         }

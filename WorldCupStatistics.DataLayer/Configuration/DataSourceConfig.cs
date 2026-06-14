@@ -12,7 +12,6 @@ namespace WorldCupStatistics.DataLayer.Configuration
         Json
     }
 
-    /// <summary>Strongly-typed binding of the "DataSource" section in appsettings.json.</summary>
     public sealed class DataSourceConfig
     {
         public const string SectionName = "DataSource";
@@ -20,7 +19,6 @@ namespace WorldCupStatistics.DataLayer.Configuration
         public DataSourceMode Mode { get; init; } = DataSourceMode.Json;
         public string ApiBaseUrl { get; init; } = "https://worldcup-vua.nullbit.hr";
 
-        // Relative sub-paths resolved against the app's base directory at runtime — never hard-coded.
         public string DataFolder { get; init; } = "Data";
         public string DefaultPlayerImage { get; init; } = "Assets/default-player.png";
     }
